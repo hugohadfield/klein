@@ -68,6 +68,11 @@ else()
     target_compile_definitions(klein_sse42 INTERFACE KLEIN_SSE_4_1)
 endif()
 
+if(ARM)
+    target_compile_definitions(klein INTERFACE KLEIN_NEON)
+    target_compile_definitions(klein_sse42 INTERFACE KLEIN_NEON)
+endif()
+
 if(KLEIN_ENABLE_PERF)
     add_subdirectory(perf)
 endif()
