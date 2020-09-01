@@ -68,10 +68,6 @@ else()
     target_compile_definitions(klein_sse42 INTERFACE KLEIN_SSE_4_1)
 endif()
 
-if(ARM)
-    target_compile_definitions(klein INTERFACE KLEIN_NEON)
-    target_compile_definitions(klein_sse42 INTERFACE KLEIN_NEON)
-endif()
 
 if(KLEIN_ENABLE_PERF)
     add_subdirectory(perf)
@@ -89,4 +85,14 @@ endif()
 
 if(KLEIN_BUILD_C_BINDINGS)
     add_subdirectory(c_src)
+endif()
+
+
+if(ARM)
+    target_compile_definitions(klein INTERFACE KLEIN_NEON)
+    target_compile_definitions(klein_sse42 INTERFACE KLEIN_NEON)
+    target_compile_definitions(perf INTERFACE KLEIN_NEON)
+    target_compile_definitions(sym INTERFACE KLEIN_NEON)
+    target_compile_definitions(test INTERFACE KLEIN_NEON)
+    target_compile_definitions(c_src INTERFACE KLEIN_NEON)
 endif()
