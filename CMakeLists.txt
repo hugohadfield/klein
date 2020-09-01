@@ -24,7 +24,7 @@ else()
     option(KLEIN_VALIDATE "Enable runtime validations" OFF)
 endif()
 
-option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" ON)
+option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" OFF)
 option(KLEIN_BUILD_C_BINDINGS "Enable compilation of the Klein C bindings" ON)
 
 # The default platform and instruction set is x86 SSE3
