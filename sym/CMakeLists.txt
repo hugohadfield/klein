@@ -3,7 +3,9 @@ target_compile_features(symlib PUBLIC cxx_std_17)
 
 if(NOT MSVC)
 # Needed for popcnt intrinsic
-    target_compile_options(symlib PUBLIC -msse4.2)
+    if(NOT ARM)
+        target_compile_options(symlib PUBLIC -msse4.2)
+    endif()
 endif()
 
 add_executable(klein_shell main.cpp)

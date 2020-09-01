@@ -24,7 +24,9 @@ else()
     option(KLEIN_VALIDATE "Enable runtime validations" OFF)
 endif()
 
-option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" OFF)
+option(ARM "Compiling on an ARM platform" ON)
+
+option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" ON)
 option(KLEIN_BUILD_C_BINDINGS "Enable compilation of the Klein C bindings" ON)
 
 # The default platform and instruction set is x86 SSE3
@@ -32,7 +34,9 @@ add_library(klein INTERFACE)
 add_library(klein::klein ALIAS klein)
 target_include_directories(klein INTERFACE public)
 if(NOT MSVC)
+if(NOT ARM)
     target_compile_options(klein INTERFACE -msse3)
+endif() 
 endif()
 
 add_library(klein_cxx11 INTERFACE)
@@ -40,7 +44,9 @@ add_library(klein::klein_cxx11 ALIAS klein_cxx11)
 target_include_directories(klein_cxx11 INTERFACE public)
 target_compile_features(klein_cxx11 INTERFACE cxx_std_11)
 if(NOT MSVC)
+if(NOT ARM)
     target_compile_options(klein_cxx11 INTERFACE -msse3)
+endif()
 endif()
 
 add_library(klein_sse42 INTERFACE)
@@ -56,7 +62,9 @@ if(MSVC)
     # AVX extensions). This is on by default.
 else()
     # Unlike MSVC, FMA instructions are enabled with a separate feature flag
-    target_compile_options(klein_sse42 INTERFACE -msse4.1)
+    if(NOT ARM)
+        target_compile_options(klein_sse42 INTERFACE -msse4.1)
+    endif()
     target_compile_definitions(klein_sse42 INTERFACE KLEIN_SSE_4_1)
 endif()
 
