@@ -3,10 +3,14 @@
 // intrinsics
 #pragma once
 
+#ifdef KLEIN_NEON
+#    include "sse2neon.h"
+#else
 #ifdef KLEIN_SSE_4_1
 #    include <smmintrin.h>
 #else
 #    include <tmmintrin.h>
+#endif
 #endif
 
 // Little-endian XMM register swizzle

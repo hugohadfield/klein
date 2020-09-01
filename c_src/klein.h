@@ -8,7 +8,11 @@ extern "C"
 {
 #endif
 
-#include <xmmintrin.h>
+#ifdef KLEIN_NEON
+#    include "sse2neon.h"
+#else
+#    include <xmmintrin.h>
+#endif
 
     typedef struct
     {

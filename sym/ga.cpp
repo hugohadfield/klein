@@ -1,7 +1,11 @@
 #include "ga.hpp"
 
 #include <cassert>
-#include <immintrin.h>
+#ifdef KLEIN_NEON
+#    include "sse2neon.h"
+#else
+#    include <immintrin.h>
+#endif
 
 uint32_t popcnt(uint32_t i)
 {
