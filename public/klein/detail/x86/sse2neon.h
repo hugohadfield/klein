@@ -2520,6 +2520,18 @@ FORCE_INLINE __m128 _mm_mul_ps(__m128 a, __m128 b)
         vmulq_f32(vreinterpretq_f32_m128(a), vreinterpretq_f32_m128(b)));
 }
 
+// https://github.com/simd-everywhere/simde/blob/a2f98fb9666e3e9897b62abaef64eaca064fdcb6/simde/x86/sse.h#L3006
+FORCE_INLINE __m128 _mm_mul_ss(__m128 a, __m128 b)
+{
+return _mm_move_ss(a, _mm_mul_ps(a, b));
+}
+
+// https://github.com/simd-everywhere/simde/blob/a2f98fb9666e3e9897b62abaef64eaca064fdcb6/simde/x86/sse.h#L3819
+FORCE_INLINE __m128 _mm_sub_ss(__m128 a, __m128 b)
+{
+return _mm_move_ss(a, _mm_sub_ps(a, b));
+}
+
 // Multiply the low unsigned 32-bit integers from each packed 64-bit element in
 // a and b, and store the unsigned 64-bit results in dst.
 //
