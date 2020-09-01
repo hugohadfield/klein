@@ -4,7 +4,7 @@
 # path and be sure to compile with the correct architecture flags for your compiler
 # Search for "target_compile_options" in this file to see what flags are needed.
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.13)
 
 project(klein LANGUAGES C CXX)
 
