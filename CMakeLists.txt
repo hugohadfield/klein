@@ -26,8 +26,8 @@ endif()
 
 option(ARM "Compiling on an ARM platform" ON)
 
-option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" ON)
-option(KLEIN_BUILD_C_BINDINGS "Enable compilation of the Klein C bindings" ON)
+option(KLEIN_BUILD_SYM "Enable compilation of symbolic Klein utility" OFF)
+option(KLEIN_BUILD_C_BINDINGS "Enable compilation of the Klein C bindings" OFF)
 
 # The default platform and instruction set is x86 SSE3
 add_library(klein INTERFACE)
@@ -91,8 +91,5 @@ endif()
 if(ARM)
     target_compile_definitions(klein INTERFACE KLEIN_NEON)
     target_compile_definitions(klein_sse42 INTERFACE KLEIN_NEON)
-    target_compile_definitions(perf INTERFACE KLEIN_NEON)
-    target_compile_definitions(sym INTERFACE KLEIN_NEON)
-    target_compile_definitions(test INTERFACE KLEIN_NEON)
-    target_compile_definitions(c_src INTERFACE KLEIN_NEON)
+    target_compile_definitions(klein_cxx11 INTERFACE KLEIN_NEON)
 endif()
